@@ -1,0 +1,31 @@
+#properties
+SERVER_PORT: 9001
+JETTY_PORT: localhost
+GLUE_PATH: /data/applogs/xxl-job/jobhandler
+
+# web port
+server:
+  port: ${SERVER_PORT:9001}
+
+# log config
+logging:
+  config: classpath:logback.xml
+
+### xxl-job
+xxl:
+  job:
+    admin:
+      # xxl-job executor address
+      addresses: http://172.18.21.144:8080/xxl-job-admin-1.9.1/
+    executor:
+      appname: xxl-job-executor-sample
+      ip:
+      port: ${JETTY_PORT:9999}
+      # xxl-job log path
+      logpath: ${GLUE_PATH:/data/applogs/xxl-job/jobhandler}
+      # xxl-job log retention days
+      logretentiondays: -1
+    # xxl-job, access token
+    accessToken:
+
+# my

@@ -1,0 +1,24 @@
+server:
+  port: 22000
+
+spring:
+  application:
+    name: inf-admin
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://172.18.21.175:22001/eureka/,http://172.18.21.176:22002/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: inf-gate
+
+server:
+  port: 22003 #启动端口
+
+## eureka配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.16.1.89:22001/eureka/,http://172.16.0.159:22002/eureka/
+  instance:
+    hostname: inf-gate
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/info
+    health-check-url-path: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+    prefer-ip-address: true
+    instance-id: http://${spring.cloud.client.ip-address}:${server.port}
+
+zuul:
+  host:
+    connect-timeout-millis: 120000
+    socket-timeout-millis: 120000
+  ignored-services: "*"
+  sensitive-headers:
+  prefix: /api #为zuul设置一个公共的前缀
+  ratelimit: # 网关限流
+    key-prefix: gate_rate
+    enabled: true
+    repository: REDIS #REDIS, JPA, IN_MEMORY
+    behind-proxy: true
+    default-policy: #optional - will apply unless specific policy exists
+      limit: 200
+      refresh-interval: 60 #default value (in seconds)
+      type: #optional
+      - user
+      - origin
+      - url
+#  routes:
+#    voucher:
+#      path: /voucher/**
+#      serviceId: voucher
+#    upc-rest:
+#      path: /upc-rest/**
+#      serviceId: upc-rest
+#    back:
+#      path: /admin/**
+#      serviceId: inf-admin
+#    base:
+#      path: /base/**
+#      serviceId: inf-base
+#    rabbit:
+#      path: /rabbit/**
+#      serviceId: inf-rabbitmq
+#    risk:
+#      path: /risk/**
+#      serviceId: kount-ms
+#    coupon:
+#      path: /coupon/**
+#      serviceId: coupon-ms
+#    paypal:
+#      path: /paypal/**
+#      serviceId: paypal-ms
+#    email:
+#      path: /email/**
+#      serviceId: email
+
+ribbon:
+  ReadTimeout: 120000
+  ConnectTimeout: 120000

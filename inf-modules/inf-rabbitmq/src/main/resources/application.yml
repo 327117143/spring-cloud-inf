@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: inf-rabbitmq
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: zw
+    password: 123456
+    publisher-confirms: true
+    virtual-host: /
+
+server:
+  port: 21003
+
+eureka:
+  client:
+      service-url:
+         defaultZone: http://eureka-server1:20001/eureka/,http://eureka-server2:20002/eureka/

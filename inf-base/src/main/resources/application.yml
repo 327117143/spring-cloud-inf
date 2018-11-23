@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: inf-base
+
+server:
+  port: 7790
+
+eureka:
+  client:
+      service-url:
+         defaultZone: http://127.0.0.1:22001/eureka/,http://127.0.0.1:22002/eureka/
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>inf-modules</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>inf-modules</name>
+    <description>operational modules</description>
+
+    <parent>
+        <groupId>com.kolema</groupId>
+        <artifactId>spring-cloud-inf</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <modules>
+        <module>inf-rabbitmq</module>
+        <module>inf-webservice</module>
+        <module>inf-mybatis-plus</module>
+    </modules>
+
+</project>
